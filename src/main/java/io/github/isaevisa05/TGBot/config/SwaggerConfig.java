@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket botApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("io.github.isaevisa05.TGBot.controllers"))
                 .paths(PathSelectors.any())
                 .build();
     }

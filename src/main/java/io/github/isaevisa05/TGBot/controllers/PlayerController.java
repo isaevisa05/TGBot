@@ -1,6 +1,8 @@
 package io.github.isaevisa05.TGBot.controllers;
 
 import io.github.isaevisa05.TGBot.jdbc.PlayerService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ public class PlayerController {
     private final PlayerService playerService;
 
     @GetMapping("/getBalance")
+    @ApiOperation(value = "Операция по получению баланса")
     public String getBalance(@RequestParam(name = "login") String login) {
         return playerService.getBalance(login) + "";
     }

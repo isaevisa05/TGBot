@@ -47,6 +47,7 @@ public class BotService extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
+        putPreviousCommand(1L, "");
         try {
             SendMessage response = new SendMessage();
             Long chatId = message.getChatId();
@@ -60,6 +61,10 @@ public class BotService extends TelegramLongPollingBot {
             } else if(ADD_SPEND.equalsIgnoreCase(message.getText())) {
                 response.setText("Отправьте мне сумму полученного расхода");
             } else {
+                String price = message.getText();
+                price = price.replace(ADD_INCOME, "");
+                price = price.replace(ADD_SPEND, "");
+
                 response.setText(financeService.addFinanceOperation(getPreviousCommand(message.getChatId()), message.getText(), message.getChatId()));
             }
 
