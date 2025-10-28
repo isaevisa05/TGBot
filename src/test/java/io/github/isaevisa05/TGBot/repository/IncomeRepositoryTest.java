@@ -17,9 +17,24 @@ public class IncomeRepositoryTest {
 
     @Test
     public void testRepo() {
+        int startSize = incomeRepository.findAll().size();
+
         for (int i = 0; i < 10; i++, incomeRepository.save(new Income())) ;
         final List<Income> found = incomeRepository.findAll();
-        assertEquals(10, found.size());
+        assertEquals(startSize + 10, found.size());
     }
+
+    @Test
+    public void testDataScripts() {
+        var income = incomeRepository.findAll();
+        System.out.println(income.size());
+        System.out.println(income.size());
+        System.out.println(income.size());
+        System.out.println(income.size());
+
+        //assertTrue(income.isPresent());
+        //assertEquals(income.get().getIncome(), new BigDecimal("43500"));
+    }
+
 
 }

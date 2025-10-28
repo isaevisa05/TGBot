@@ -12,11 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 public class ActiveChatRepositoryTest {
 
+    public static final Long testChatId = 12345L;
     @Autowired
     private ActiveChatRepository activeChatRepository;
-
-    public static final Long testChatId = 12345L;
-
 
     @Test
     public void testRepo_found() {
