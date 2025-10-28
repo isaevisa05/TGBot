@@ -5,11 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 public class IncomeRepositoryTest {
@@ -19,24 +17,20 @@ public class IncomeRepositoryTest {
 
     @Test
     public void testRepo() {
+        int startSize = incomeRepository.findAll().size();
+
         for (int i = 0; i < 10; i++, incomeRepository.save(new Income())) ;
         final List<Income> found = incomeRepository.findAll();
-        assertEquals(10, found.size());
+        assertEquals(startSize + 10, found.size());
     }
 
     @Test
     public void testDataScripts() {
-        var income = incomeRepository.findById(12345L);
-        System.out.println(income);
-
-        if(income.isEmpty()) System.out.println(true);
-        if(income.isEmpty()) System.out.println(true);
-        if(income.isEmpty()) System.out.println(true);
-        if(income.isEmpty()) System.out.println(true);
-        if(income.isEmpty()) System.out.println(true);
-        if(income.isEmpty()) System.out.println(true);
-        if(income.isEmpty()) System.out.println(true);
-        if(income.isEmpty()) System.out.println(true);
+        var income = incomeRepository.findAll();
+        System.out.println(income.size());
+        System.out.println(income.size());
+        System.out.println(income.size());
+        System.out.println(income.size());
 
         //assertTrue(income.isPresent());
         //assertEquals(income.get().getIncome(), new BigDecimal("43500"));
